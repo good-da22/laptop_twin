@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>노트북 디지털 트윈 - 3D 시스템 모니터링</title>
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <!-- Three.js CDN -->
+    <script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.158.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.158.0/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- 상태 대시보드 -->
+    <div id="dashboard">
+        <h2>📊 시스템 상태</h2>
+        <div class="metric-grid">
+            <div class="metric-card">
+                <div class="metric-icon">💻</div>
+                <div class="metric-info">
+                    <div class="metric-label">CPU</div>
+                    <div class="metric-value"><span id="cpu-value">0</span>%</div>
+                    <div class="metric-bar">
+                        <div id="cpu-bar" class="bar-fill"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-icon">🧠</div>
+                <div class="metric-info">
+                    <div class="metric-label">메모리</div>
+                    <div class="metric-value"><span id="memory-value">0</span>%</div>
+                    <div class="metric-bar">
+                        <div id="memory-bar" class="bar-fill"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-icon">🔋</div>
+                <div class="metric-info">
+                    <div class="metric-label">배터리</div>
+                    <div class="metric-value"><span id="battery-value">0</span>%</div>
+                    <div class="metric-bar">
+                        <div id="battery-bar" class="bar-fill battery"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-icon">💾</div>
+                <div class="metric-info">
+                    <div class="metric-label">디스크</div>
+                    <div class="metric-value"><span id="disk-value">0</span>%</div>
+                    <div class="metric-bar">
+                        <div id="disk-bar" class="bar-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="process-info">
+            <h3>🔄 프로세스: <span id="process-count">0</span>개</h3>
+        </div>
+    </div>
+    
+    <!-- 컨트롤 패널 -->
+    <div id="controls">
+        <button id="btn-reset-view">🔄 뷰 리셋</button>
+        <button id="btn-toggle-animation">⏸️ 애니메이션</button>
+        <label>
+            <input type="checkbox" id="auto-rotate" checked>
+            자동 회전
+        </label>
+    </div>
+    
+    <!-- 3D 캔버스 컨테이너 -->
+    <div id="canvas-container"></div>
+    
+    <!-- 로딩 인디케이터 -->
+    <div id="loading">
+        <div class="loading-spinner"></div>
+        <div>디지털 트윈 초기화 중...</div>
+    </div>
+    
+    <!-- 에러 메시지 -->
+    <div id="error-message" class="hidden">
+        <div class="error-content">
+            <h3>⚠️ 연결 오류</h3>
+            <p>서버와 연결할 수 없습니다.</p>
+            <button onclick="location.reload()">새로고침</button>
+        </div>
+    </div>
+    
+    <!-- Three.js 메인 스크립트 -->
+    <script type="module" src="/js/main.js"></script>
+</body>
+</html>
